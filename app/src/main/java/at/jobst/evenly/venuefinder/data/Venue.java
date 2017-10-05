@@ -10,21 +10,22 @@ public class Venue {
     private String id;
     private String name;
     private VenueLocation location;
-    private String hours;
+    private Hours hours;
     private String description;
     private String like;
-    private List<VenuePhoto> photos;
+    private List<Category> categories;
+    private VenuePhoto bestPhoto;
 
-    Venue() {}
+    public Venue() {}
 
-    public Venue(String id, String name, VenueLocation location, String hours, String description, String like, List<VenuePhoto> photos) {
+    public Venue(String id, String name, VenueLocation location, Hours hours, String description, String like, VenuePhoto photos) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.hours = hours;
         this.description = description;
         this.like = like;
-        this.photos = photos;
+        this.bestPhoto = photos;
     }
 
     public String getId() {
@@ -51,11 +52,11 @@ public class Venue {
         this.location = location;
     }
 
-    public String getHours() {
+    public Hours getHours() {
         return hours;
     }
 
-    public void setHours(String hours) {
+    public void setHours(Hours hours) {
         this.hours = hours;
     }
 
@@ -75,24 +76,33 @@ public class Venue {
         this.like = like;
     }
 
-    public List<VenuePhoto> getPhotos() {
-        return photos;
+    public VenuePhoto getBestPhoto() {
+        return bestPhoto;
     }
 
-    public void setPhotos(List<VenuePhoto> photos) {
-        this.photos = photos;
+    public void setBestPhoto(VenuePhoto bestPhoto) {
+        this.bestPhoto = bestPhoto;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
     public String toString() {
-        return "at.jobst.evenly.venuefinder.data.Venue{" +
+        return "Venue{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", location=" + location +
-                ", hours='" + hours + '\'' +
+                ", hours=" + hours +
                 ", description='" + description + '\'' +
                 ", like='" + like + '\'' +
-                ", photos=" + photos +
+                ", categories=" + categories +
+                ", bestPhoto=" + bestPhoto +
                 '}';
     }
 }

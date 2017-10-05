@@ -1,13 +1,82 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/fragment_dialog"
     tools:context="at.jobst.evenly.venuefinder.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_dialog_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorAccent"/>
 
+        <TextView
+            android:id="@+id/tv_dialog_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3pt"
+            android:layout_marginTop="3pt"
+            android:gravity="bottom"
+            android:layout_below="@id/iv_dialog_image"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/tv_dialog_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_dialog_name"
+            android:layout_marginLeft="3pt"
+            android:layout_marginBottom="3pt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_dialog_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_dialog_category"
+            android:layout_margin="3pt"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/tv_dialog_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_dialog_description"
+            android:layout_margin="3pt"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <ImageView
+            android:id="@+id/iv_dialog_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_dialog_hours"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_dialog_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_dialog_divider"
+            android:layout_margin="3pt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/tv_dialog_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_dialog_address"
+            android:layout_margin="3pt"
+            android:gravity="right"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/colorPrimaryDark" />
+    </RelativeLayout>
 </FrameLayout>

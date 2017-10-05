@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="3pt"
+    android:layout_marginRight="3pt"
+    android:layout_marginTop="5pt"
+    android:animateLayoutChanges="true"
+    app:cardElevation="3dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3pt"
+            android:layout_marginTop="3pt"
+            android:gravity="top|left"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/tv_item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_name"
+            android:layout_marginLeft="3pt"
+            android:layout_marginBottom="3pt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <ImageView
+            android:id="@+id/iv_item_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_item_category"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_item_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_item_divider"
+            android:layout_margin="3pt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+
+        <TextView
+            android:id="@+id/tv_item_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_item_address"
+            android:layout_margin="3pt"
+            android:gravity="right"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/colorPrimaryDark" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

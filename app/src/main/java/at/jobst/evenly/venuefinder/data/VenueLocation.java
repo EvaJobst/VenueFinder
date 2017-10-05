@@ -7,8 +7,10 @@ package at.jobst.evenly.venuefinder.data;
 public class VenueLocation {
     private String address;
     private String distance;
+    private String lat;
+    private String lng;
 
-    VenueLocation() {}
+    public VenueLocation() {}
 
     public VenueLocation(String address, String distance) {
         this.address = address;
@@ -31,11 +33,29 @@ public class VenueLocation {
         this.distance = distance;
     }
 
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
     @Override
     public String toString() {
-        return "at.jobst.evenly.venuefinder.data.VenueLocation{" +
+        return "VenueLocation{" +
                 "address='" + address + '\'' +
                 ", distance='" + distance + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lng='" + lng + '\'' +
                 '}';
     }
 }

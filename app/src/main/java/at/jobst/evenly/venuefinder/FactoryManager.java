@@ -1,5 +1,11 @@
 package at.jobst.evenly.venuefinder;
 
+import android.app.Activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import at.jobst.evenly.venuefinder.adapter.VenueListAdapter;
 import at.jobst.evenly.venuefinder.data.Venue;
 import at.jobst.evenly.venuefinder.data.VenueLocation;
 import at.jobst.evenly.venuefinder.data.VenuePhoto;
@@ -32,5 +38,13 @@ public class FactoryManager {
 
     public static FoursquareService createService(Retrofit retrofit) {
         return retrofit.create(FoursquareService.class);
+    }
+
+    static VenueListAdapter createVenueListAdapter(Activity activity) {
+        return new VenueListAdapter(activity);
+    }
+
+    static VenueListAdapter createVenueListAdapter(ArrayList<Venue> venues, Activity activity) {
+        return new VenueListAdapter(venues, activity);
     }
 }

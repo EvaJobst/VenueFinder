@@ -10,7 +10,26 @@ public class VenuePhoto {
     private String suffix;
     private String visibility;
 
-    VenuePhoto() {}
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    private String width;
+    private String height;
+
+    public VenuePhoto() {}
 
     public VenuePhoto(String id, String prefix, String suffix, String visibility) {
         this.id = id;
@@ -53,11 +72,17 @@ public class VenuePhoto {
 
     @Override
     public String toString() {
-        return "at.jobst.evenly.venuefinder.data.VenuePhoto{" +
+        return "VenuePhoto{" +
                 "id='" + id + '\'' +
                 ", prefix='" + prefix + '\'' +
                 ", suffix='" + suffix + '\'' +
                 ", visibility='" + visibility + '\'' +
+                ", width='" + width + '\'' +
+                ", height='" + height + '\'' +
                 '}';
+    }
+
+    public String getURL() {
+        return prefix + width + "x" + height + suffix;
     }
 }

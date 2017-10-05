@@ -1,19 +1,22 @@
-package at.jobst.evenly.venuefinder.data;
+package at.jobst.evenly.venuefinder.retrofit;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import at.jobst.evenly.venuefinder.data.Venue;
 
 /**
  * Created by Eva on 30.09.2017.
  */
 
 public class Venues {
-    List<Venue> venues;
+    ArrayList<Venue> venues;
 
-    public List<Venue> getVenues() {
+    public ArrayList<Venue> getVenues() {
         return venues;
     }
 
-    public void setVenues(List<Venue> venues) {
+    public void setVenues(ArrayList<Venue> venues) {
         this.venues = venues;
     }
 

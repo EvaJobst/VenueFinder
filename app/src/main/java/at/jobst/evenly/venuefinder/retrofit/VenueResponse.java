@@ -1,17 +1,19 @@
-package at.jobst.evenly.venuefinder.data;
+package at.jobst.evenly.venuefinder.retrofit;
+
+import at.jobst.evenly.venuefinder.data.Venue;
 
 /**
- * Created by Eva on 30.09.2017.
+ * Created by Eva on 01.10.2017.
  */
 
 public class VenueResponse {
-    Venues response;
+    VenueVenue response;
 
-    public Venues getResponse() {
+    public VenueVenue getResponse() {
         return response;
     }
 
-    public void setResponse(Venues response) {
+    public void setResponse(VenueVenue response) {
         this.response = response;
     }
 
