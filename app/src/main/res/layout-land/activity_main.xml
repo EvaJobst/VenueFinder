@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    tools:context="at.jobst.evenly.venuefinder.MainActivity">
+    android:layout_width="match_parent">
 
-    <fragment
-        android:id="@+id/mv_main_map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:tag="@string/title_activity_maps"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_weight="0.4"/>
+        android:gravity="center_horizontal"
+        tools:context="at.jobst.evenly.venuefinder.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_main_list"
-        android:layout_width="0dp"
-        android:layout_weight="0.6"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
-</LinearLayout>
+        <fragment
+            android:id="@+id/mv_main_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:tag="@string/title_activity_maps"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="0.4" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_main_list"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_main_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

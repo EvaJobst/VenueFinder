@@ -4,7 +4,7 @@ package at.jobst.evenly.venuefinder.data;
  * Created by Eva on 30.09.2017.
  */
 
-public class VenuePhoto {
+public class Photo {
     private String id;
     private String prefix;
     private String suffix;
@@ -29,9 +29,9 @@ public class VenuePhoto {
     private String width;
     private String height;
 
-    public VenuePhoto() {}
+    public Photo() {}
 
-    public VenuePhoto(String id, String prefix, String suffix, String visibility) {
+    public Photo(String id, String prefix, String suffix, String visibility) {
         this.id = id;
         this.prefix = prefix;
         this.suffix = suffix;
@@ -72,7 +72,7 @@ public class VenuePhoto {
 
     @Override
     public String toString() {
-        return "VenuePhoto{" +
+        return "Photo{" +
                 "id='" + id + '\'' +
                 ", prefix='" + prefix + '\'' +
                 ", suffix='" + suffix + '\'' +

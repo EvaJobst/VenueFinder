@@ -1,24 +1,26 @@
 package at.jobst.evenly.venuefinder.retrofit;
 
+import java.util.ArrayList;
+import at.jobst.evenly.venuefinder.data.Venue;
+
 /**
- * Created by Eva on 30.09.2017.
+ * Nested element of {@link Search}, which contains the Venues.
  */
-
 public class SearchResponse {
-    Venues response;
+    ArrayList<Venue> venues;
 
-    public Venues getResponse() {
-        return response;
+    public ArrayList<Venue> getVenues() {
+        return venues;
     }
 
-    public void setResponse(Venues response) {
-        this.response = response;
+    public void setVenues(ArrayList<Venue> venues) {
+        this.venues = venues;
     }
 
     @Override
     public String toString() {
-        return "SearchResponse{" +
-                "response=" + response +
+        return "Venues{" +
+                "venues=" + venues +
                 '}';
     }
 }

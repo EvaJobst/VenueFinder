@@ -2,23 +2,19 @@ package at.jobst.evenly.venuefinder.data;
 
 import java.util.List;
 
-/**
- * Created by Eva on 30.09.2017.
- */
-
 public class Venue {
     private String id;
     private String name;
-    private VenueLocation location;
+    private Location location;
     private Hours hours;
     private String description;
     private String like;
     private List<Category> categories;
-    private VenuePhoto bestPhoto;
+    private Photo bestPhoto;
 
     public Venue() {}
 
-    public Venue(String id, String name, VenueLocation location, Hours hours, String description, String like, VenuePhoto photos) {
+    public Venue(String id, String name, Location location, Hours hours, String description, String like, Photo photos) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -44,11 +40,11 @@ public class Venue {
         this.name = name;
     }
 
-    public VenueLocation getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(VenueLocation location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -76,11 +72,11 @@ public class Venue {
         this.like = like;
     }
 
-    public VenuePhoto getBestPhoto() {
+    public Photo getBestPhoto() {
         return bestPhoto;
     }
 
-    public void setBestPhoto(VenuePhoto bestPhoto) {
+    public void setBestPhoto(Photo bestPhoto) {
         this.bestPhoto = bestPhoto;
     }
 

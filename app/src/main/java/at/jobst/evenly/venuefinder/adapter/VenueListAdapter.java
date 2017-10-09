@@ -5,19 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import at.jobst.evenly.venuefinder.DetailFragment;
-import at.jobst.evenly.venuefinder.FactoryManager;
-import at.jobst.evenly.venuefinder.FoursquareService;
+import at.jobst.evenly.venuefinder.MainActivity;
+import at.jobst.evenly.venuefinder.Utility;
+import at.jobst.evenly.venuefinder.retrofit.FoursquareService;
 import at.jobst.evenly.venuefinder.R;
 import at.jobst.evenly.venuefinder.Settings;
 import at.jobst.evenly.venuefinder.data.Venue;
-import at.jobst.evenly.venuefinder.retrofit.SearchResponse;
-import at.jobst.evenly.venuefinder.retrofit.VenueResponse;
+import at.jobst.evenly.venuefinder.retrofit.Data;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -26,21 +26,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
- * Created by Eva on 30.09.2017.
+ * Is the adapter that is used for the {@link at.jobst.evenly.venuefinder.MainActivity} in order to display the dataCallback in the respective cards.
  */
-
 public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.VenueViewHolder> {
     ArrayList<Venue> venueList;
     Activity activity;
 
-    public VenueListAdapter(Activity a) {
-        venueList = new ArrayList<>();
-        activity = a;
-    }
+    ProgressBar progressBar;
 
     public VenueListAdapter(ArrayList<Venue> venues, Activity a) {
         venueList = venues;
         activity = a;
+
+        if(activity instanceof MainActivity) {
+            progressBar = (((MainActivity) activity).progressBar);
+        }
     }
 
     @Override
@@ -51,12 +51,14 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
 
     @Override
     public void onBindViewHolder(VenueViewHolder holder, int position) {
-        holder.id = venueList.get(position).getId();
-        holder.name.setText(venueList.get(position).getName());
-        holder.distance.setText(venueList.get(position).getLocation().getDistance() + " m");
-        holder.address.setText(venueList.get(position).getLocation().getAddress());
-        if(venueList.get(position).getCategories().get(0) != null) {
-            holder.category.setText(venueList.get(position).getCategories().get(0).getName());
+        Venue venue = venueList.get(position);
+
+        holder.id = venue.getId();
+        holder.name.setText(venue.getName());
+        holder.distance.setText(venue.getLocation().getDistance() + " m");
+        holder.address.setText(venue.getLocation().getAddress());
+        if(venue.getCategories().get(0) != null) {
+            holder.category.setText(venue.getCategories().get(0).getName());
         }
     }
 
@@ -65,16 +67,6 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
         return venueList.size();
     }
 
-    public ArrayList<Venue> getVenueList() {
-        return venueList;
-    }
-
-    public void setVenueList(ArrayList<Venue> venueList) {
-        this.venueList = venueList;
-    }
-
-
-
     class VenueViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         String id;
         @BindView(R.id.tv_item_name) TextView name;
@@ -82,18 +74,27 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
         @BindView(R.id.tv_item_category) TextView category;
         @BindView(R.id.tv_item_address) TextView address;
 
-        Callback<VenueResponse> venueResponseCallback = new Callback<VenueResponse>() {
+        /**
+         * Shows {@link DetailFragment} of data as a dialog on successful fetch. Shows error message on failed fetch.
+         */
+        Callback<Data> dataCallback = new Callback<Data>() {
             @Override
-            public void onResponse(Call<VenueResponse> call, Response<VenueResponse> response) {
-                /*DetailFragment dialog = DetailFragment.newInstance(id, distance.getText().toString());
-                dialog.show(activity.getFragmentManager(), DetailFragment.class.getName());*/
+            public void onResponse(Call<Data> call, Response<Data> response) {
                 DetailFragment dialog = DetailFragment.newInstance(response.body().getResponse().getVenue(), distance.getText().toString());
                 dialog.show(activity.getFragmentManager(), DetailFragment.class.getName());
+
+                if(progressBar != null) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
-            public void onFailure(Call<VenueResponse> call, Throwable t) {
-                Toast.makeText(activity, "Error: Failed to load data", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Data> call, Throwable t) {
+                Utility.showError(activity, t);
+
+                if(progressBar != null) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         };
 
@@ -103,18 +104,26 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
             itemView.setOnClickListener(this);
         }
 
+        /**
+         * Fetch data of clicked view and enlists a Callback.
+         * @param v
+         */
         @Override
         public void onClick(View v) {
-            Retrofit retrofit = FactoryManager.createRetrofit();
-            FoursquareService foursquareService = FactoryManager.createService(retrofit);
-            Call<VenueResponse> response = foursquareService.getVenue(
+            Retrofit retrofit = Utility.createRetrofit();
+            FoursquareService foursquareService = retrofit.create(FoursquareService.class);
+            Call<Data> response = foursquareService.fetch(
                     id,
-                    Settings.V,
+                    Settings.VERSION,
                     Settings.CLIENT_ID,
                     Settings.CLIENT_SECRET
             );
 
-            response.enqueue(venueResponseCallback);
+            if(progressBar != null) {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            response.enqueue(dataCallback);
         }
     }
 }

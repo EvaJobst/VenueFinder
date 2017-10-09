@@ -3,10 +3,9 @@ package at.jobst.evenly.venuefinder.retrofit;
 import at.jobst.evenly.venuefinder.data.Venue;
 
 /**
- * Created by Eva on 01.10.2017.
+ * Nested element of {@link Data}, which contains the Venue.
  */
-
-public class VenueVenue {
+public class DataResponse {
     Venue venue;
 
     public Venue getVenue() {
@@ -19,7 +18,7 @@ public class VenueVenue {
 
     @Override
     public String toString() {
-        return "VenueVenue{" +
+        return "DataResponse{" +
                 "venue=" + venue +
                 '}';
     }

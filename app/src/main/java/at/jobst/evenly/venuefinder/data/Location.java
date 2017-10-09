@@ -4,15 +4,15 @@ package at.jobst.evenly.venuefinder.data;
  * Created by Eva on 30.09.2017.
  */
 
-public class VenueLocation {
+public class Location {
     private String address;
     private String distance;
     private String lat;
     private String lng;
 
-    public VenueLocation() {}
+    public Location() {}
 
-    public VenueLocation(String address, String distance) {
+    public Location(String address, String distance) {
         this.address = address;
         this.distance = distance;
     }
@@ -51,7 +51,7 @@ public class VenueLocation {
 
     @Override
     public String toString() {
-        return "VenueLocation{" +
+        return "Location{" +
                 "address='" + address + '\'' +
                 ", distance='" + distance + '\'' +
                 ", lat='" + lat + '\'' +
