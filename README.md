@@ -10,9 +10,9 @@ Welcome to the VenueFinder! It allows browsing through the Venues nearby a certa
 - Clicking on the marker in the map shows the name and category of the Venue.
 - Clicking on the information-window of the marker fetches the complete Venue and opens the Dialog with the Details.
 
-<img src="images\venuefinder_overview.png" alt="alt text" width="150px">
-<img src="images\venuefinder_details.png" alt="alt text" width="150px">
-<img src="images\venuefinder_map.png" alt="alt text" width="150px">
+<img src="images/venuefinder_overview.png" alt="alt text" width="150px">
+<img src="images/venuefinder_details.png" alt="alt text" width="150px">
+<img src="images/venuefinder_map.png" alt="alt text" width="150px">
 
 #### Features
 - **List with Venues:** Provides the user with a short overview of the Venues that are nearby. They are sorted in ascending order, dependent on the distance to the starting point.
