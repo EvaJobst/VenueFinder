@@ -13,7 +13,7 @@ public final class Settings {
     public static final String LONGITUDE = "13.425170";
 
     // KEYS
-    static final String VENUE_ID = "VENUE_ID";
+    static final String VENUE_DETAILS = "VENUE_DETAILS";
     static final String VENUE_DISTANCE = "VENUE_DISTANCE";
 
     // API CALL PARAMETER

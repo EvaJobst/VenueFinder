@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -44,7 +43,7 @@ public class DetailFragment extends DialogFragment {
         DetailFragment fragment = new DetailFragment();
 
         Bundle args = new Bundle();
-        args.putSerializable(Settings.VENUE_ID, new Gson().toJson(venue));
+        args.putSerializable(Settings.VENUE_DETAILS, new Gson().toJson(venue));
         args.putString(Settings.VENUE_DISTANCE, venueDistance);
         fragment.setArguments(args);
 
@@ -52,9 +51,9 @@ public class DetailFragment extends DialogFragment {
     }
 
     /**
-     *klkflöa
+     * Is responsible for the layout of the Dialog, furthermore the put arguments are used to fetch the details of the Venue and display the distance.
      * @param savedInstanceState
-     * @return
+     * @return The built Dialog
      */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class DetailFragment extends DialogFragment {
         ButterKnife.bind(this, view);
 
         Bundle bundle = getArguments();
-        Venue venue = new Gson().fromJson(bundle.getSerializable(Settings.VENUE_ID).toString(), Venue.class);
+        Venue venue = new Gson().fromJson(bundle.getSerializable(Settings.VENUE_DETAILS).toString(), Venue.class);
         String d = bundle.getString(Settings.VENUE_DISTANCE);
         venue.getLocation().setDistance(d);
 
@@ -76,7 +75,7 @@ public class DetailFragment extends DialogFragment {
     }
 
     /**
-     *
+     * Loads the image into the view-container. The Runnable prevents the image from being loaded before the height and width of the container are set.
      * @param venue
      * @param view
      */
@@ -96,7 +95,7 @@ public class DetailFragment extends DialogFragment {
     }
 
     /**
-     *
+     * Puts values of
      * @param venue
      */
     void setTextViews(final Venue venue) {

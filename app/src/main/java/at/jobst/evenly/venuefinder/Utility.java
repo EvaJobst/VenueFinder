@@ -32,6 +32,10 @@ public final class Utility {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static final Comparator<Venue> createComparator() {
         return new Comparator<Venue>() {
             @Override
@@ -52,10 +56,18 @@ public final class Utility {
         };
     }
 
+    /**
+     *
+     * @return
+     */
     static final String createDate() {
         return new SimpleDateFormat("yyyyMMdd").format(new Date());
     }
 
+    /**
+     *
+     * @return
+     */
     public static final Retrofit createRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(Settings.BASE_URL)
@@ -63,6 +75,11 @@ public final class Utility {
                 .build();
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     */
     public static int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
