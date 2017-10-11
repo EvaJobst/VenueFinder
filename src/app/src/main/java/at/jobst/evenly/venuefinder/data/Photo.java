@@ -82,6 +82,10 @@ public class Photo {
                 '}';
     }
 
+    /**
+     * Every URL of an image is constructed of the prefix, width, height and suffix.
+     * @return The URL of the image
+     */
     public String getURL() {
         return prefix + width + "x" + height + suffix;
     }

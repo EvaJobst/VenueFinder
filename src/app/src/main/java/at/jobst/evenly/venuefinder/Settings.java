@@ -16,7 +16,7 @@ public final class Settings {
     static final String VENUE_DETAILS = "VENUE_DETAILS";
     static final String VENUE_DISTANCE = "VENUE_DISTANCE";
 
-    // API CALL PARAMETER
+    // RETROFIT PARAMETER
     static final String BASE_URL = "https://api.foursquare.com/v2/";
     public static final String SEARCH_URL = "venues/search";
     public static final String VENUE_URL = "venues/";

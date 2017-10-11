@@ -34,7 +34,7 @@ public class DetailFragment extends DialogFragment {
     }
 
     /**
-     * Creates a new instance
+     * Creates and returns a new instance with arguments
      * @param venue Currently selected Venue
      * @param venueDistance Distance of the currently selected Venue
      * @return DetailFragment-instance with a Bundle
@@ -46,12 +46,11 @@ public class DetailFragment extends DialogFragment {
         args.putSerializable(Settings.VENUE_DETAILS, new Gson().toJson(venue));
         args.putString(Settings.VENUE_DISTANCE, venueDistance);
         fragment.setArguments(args);
-
         return fragment;
     }
 
     /**
-     * Is responsible for the layout of the Dialog, furthermore the put arguments are used to fetch the details of the Venue and display the distance.
+     * Is responsible for the layout of the Dialog. The arguments are processed and put into their Views.
      * @param savedInstanceState
      * @return The built Dialog
      */
@@ -62,22 +61,34 @@ public class DetailFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_detail, null);
         ButterKnife.bind(this, view);
 
+        // Parses argument values
         Bundle bundle = getArguments();
         Venue venue = new Gson().fromJson(bundle.getSerializable(Settings.VENUE_DETAILS).toString(), Venue.class);
         String d = bundle.getString(Settings.VENUE_DISTANCE);
         venue.getLocation().setDistance(d);
 
+        // Fills TextViews with values
+        name.setText(venue.getName());
+        distance.setText(venue.getLocation().getDistance());
+        address.setText(venue.getLocation().getAddress());
+        category.setText(venue.getCategories().get(0).getName());
+        description.setText(venue.getDescription());
+
+        if(venue.getHours() != null) {
+            hours.setText(venue.getHours().getStatus());
+        }
+
+        // Fills ImageView with image
         setImage(venue, view);
-        setTextViews(venue);
 
         builder.setView(view);
         return builder.create();
     }
 
     /**
-     * Loads the image into the view-container. The Runnable prevents the image from being loaded before the height and width of the container are set.
-     * @param venue
-     * @param view
+     * Loads the image into the view-container. A Runnable prevents the image from being loaded before the height and width of the container are set.
+     * @param venue The Venue containing the image
+     * @param view The View of the Fragment
      */
     void setImage(final Venue venue, View view) {
         view.post(new Runnable() {
@@ -92,21 +103,5 @@ public class DetailFragment extends DialogFragment {
                 }
             }
         });
-    }
-
-    /**
-     * Puts values of
-     * @param venue
-     */
-    void setTextViews(final Venue venue) {
-        name.setText(venue.getName());
-        distance.setText(venue.getLocation().getDistance());
-        address.setText(venue.getLocation().getAddress());
-        category.setText(venue.getCategories().get(0).getName());
-        description.setText(venue.getDescription());
-
-        if(venue.getHours() != null) {
-            hours.setText(venue.getHours().getStatus());
-        }
     }
 }

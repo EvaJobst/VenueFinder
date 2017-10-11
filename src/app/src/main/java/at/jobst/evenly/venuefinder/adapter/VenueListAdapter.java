@@ -26,12 +26,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
- * Is the adapter that is used for the {@link at.jobst.evenly.venuefinder.MainActivity} in order to display the dataCallback in the respective cards.
+ * Is the adapter that is used for the {@link at.jobst.evenly.venuefinder.MainActivity} in order to display the fetched data in the respective cards.
  */
 public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.VenueViewHolder> {
     ArrayList<Venue> venueList;
     Activity activity;
-
     ProgressBar progressBar;
 
     public VenueListAdapter(ArrayList<Venue> venues, Activity a) {
@@ -69,10 +68,10 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
 
     class VenueViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         String id;
-        @BindView(R.id.tv_item_name) TextView name;
-        @BindView(R.id.tv_item_distance) TextView distance;
-        @BindView(R.id.tv_item_category) TextView category;
-        @BindView(R.id.tv_item_address) TextView address;
+        @BindView(R.id.tv_item_name)        TextView name;
+        @BindView(R.id.tv_item_distance)    TextView distance;
+        @BindView(R.id.tv_item_category)    TextView category;
+        @BindView(R.id.tv_item_address)     TextView address;
 
         /**
          * Shows {@link DetailFragment} of data as a dialog on successful fetch. Shows error message on failed fetch.
@@ -106,7 +105,7 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
 
         /**
          * Fetch data of clicked view and enlists a Callback.
-         * @param v
+         * @param v The view that has been clicked on
          */
         @Override
         public void onClick(View v) {

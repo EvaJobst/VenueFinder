@@ -3,12 +3,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,15 +30,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ *
+ */
 public class MainActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         GoogleMap.OnInfoWindowClickListener
 {
-    @BindView(R.id.rv_main_list)
-    RecyclerView recyclerView;
-
-    @BindView(R.id.pb_main_progress)
-    public ProgressBar progressBar;
+    @BindView(R.id.rv_main_list)        RecyclerView recyclerView;
+    @BindView(R.id.pb_main_progress)    public ProgressBar progressBar;
 
     ArrayList<Venue> venues;
     VenueListAdapter adapter;
@@ -55,14 +53,11 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        // Set up lists and Recycler View
         venues = new ArrayList<>();
         adapter = new VenueListAdapter(venues, this);
-
-        // Set up Recycler View
         recyclerView.setAdapter(adapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(this, Utility.calculateNoOfColumns(this)));
-        recyclerView.setVerticalScrollBarEnabled(true);
 
         // Start fetching venues
         Retrofit retrofit = Utility.createRetrofit();
@@ -74,9 +69,8 @@ public class MainActivity extends AppCompatActivity implements
                 Settings.CLIENT_SECRET
         );
 
-        progressBar.setVisibility(View.VISIBLE);
-
         response.enqueue(searchCallback);
+        progressBar.setVisibility(View.VISIBLE);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -92,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Checks for a match and fetches detail information on the venue.
-     * @param marker Marker that has been clicked
+     * @param marker Marker, whose Info-Window, has been clicked
      */
     @Override
     public void onInfoWindowClick(Marker marker) {
@@ -107,15 +101,15 @@ public class MainActivity extends AppCompatActivity implements
                         Settings.CLIENT_SECRET
                 );
 
-                progressBar.setVisibility(View.VISIBLE);
                 response.enqueue(dataCallback);
+                progressBar.setVisibility(View.VISIBLE);
             }
         }
     }
 
     /**
      * Shows the detail dialog on successful response or a message when an error has occured.
-     * @return Callback containing respective methods
+     * @return Callback containing the respective methods
      */
     public Callback<Data> createDataCallback() {
         return new Callback<Data>() {
@@ -171,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements
     public void loadMarker() {
         LatLngBounds.Builder bounds = LatLngBounds.builder();
 
+        // Add Venue marker
         for(Venue v : venues) {
             float lat = Float.parseFloat(v.getLocation().getLat());
             float lng = Float.parseFloat(v.getLocation().getLng());
@@ -185,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements
             bounds.include(location);
         }
 
+        // Add Start marker
         float startLat = Float.parseFloat(Settings.LATITUDE);
         float startLng = Float.parseFloat(Settings.LONGITUDE);
         LatLng startPosition = new LatLng(startLat, startLng);
@@ -192,6 +188,8 @@ public class MainActivity extends AppCompatActivity implements
                     .position(startPosition));
 
         bounds.include(startPosition);
+
+        // Focus camera to the bounding box of the marker
         map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 100));
     }
 

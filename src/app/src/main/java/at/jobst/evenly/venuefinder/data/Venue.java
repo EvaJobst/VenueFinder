@@ -8,7 +8,6 @@ public class Venue {
     private Location location;
     private Hours hours;
     private String description;
-    private String like;
     private List<Category> categories;
     private Photo bestPhoto;
 
@@ -20,7 +19,6 @@ public class Venue {
         this.location = location;
         this.hours = hours;
         this.description = description;
-        this.like = like;
         this.bestPhoto = photos;
     }
 
@@ -64,14 +62,6 @@ public class Venue {
         this.description = description;
     }
 
-    public String getLike() {
-        return like;
-    }
-
-    public void setLike(String like) {
-        this.like = like;
-    }
-
     public Photo getBestPhoto() {
         return bestPhoto;
     }
@@ -96,7 +86,6 @@ public class Venue {
                 ", location=" + location +
                 ", hours=" + hours +
                 ", description='" + description + '\'' +
-                ", like='" + like + '\'' +
                 ", categories=" + categories +
                 ", bestPhoto=" + bestPhoto +
                 '}';
