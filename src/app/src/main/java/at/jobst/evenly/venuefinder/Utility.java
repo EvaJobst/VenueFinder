@@ -40,7 +40,7 @@ public final class Utility {
 
     /**
      * Creates a new comparator in order to sort the Venues ascending, dependent on the distance.
-     * @return
+     * @return A Comparator that can compare Venues
      */
     public static final Comparator<Venue> createComparator() {
         return new Comparator<Venue>() {
@@ -77,8 +77,8 @@ public final class Utility {
     }
 
     /**
-     *
-     * @return
+     * Creates a Retrofit instances and sets Gson as the Converter
+     * @return a Retrofit instance
      */
     public static final Retrofit createRetrofit() {
         return new Retrofit.Builder()

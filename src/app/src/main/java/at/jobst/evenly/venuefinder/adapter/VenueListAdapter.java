@@ -37,6 +37,7 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
         venueList = venues;
         activity = a;
 
+        // Add the progressBar of the MainActivity
         if(activity instanceof MainActivity) {
             progressBar = (((MainActivity) activity).progressBar);
         }
